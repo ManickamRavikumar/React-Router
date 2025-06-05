@@ -9,14 +9,14 @@ import NotFound from './pages/NotFound'
 import { CartProvider } from './context/CartContext'
 import Login from './Pages/Login'
 import Signin from './Pages/SignIn'
-import Navbar from './Components/NavBar'
+import NavBar from './Components/NavBar'
 function App() {
  
 
   return (
     <CartProvider>
       <BrowserRouter>
-       <Navbar/>
+       <NavBar/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />

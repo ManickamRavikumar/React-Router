@@ -4,7 +4,7 @@ import { FiShoppingCart } from 'react-icons/fi'
 import { useContext } from 'react'
 import { CartContext } from '../context/CartContext'
 
-function Navbar() {
+function NavBar() {
   const { cartItems } = useContext(CartContext)
   return (
     <nav className='flex justify-between items-center p-4 shadow-md'>
@@ -26,4 +26,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default NavBar
