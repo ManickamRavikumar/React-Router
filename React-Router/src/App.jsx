@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
+
 import Cart from './Pages/Cart'
 import ProductDetail from './Pages/ProuctDetails'
 import Checkout from './Pages/Checkout'
@@ -10,6 +10,7 @@ import { CartProvider } from './context/CartContext'
 import Login from './Pages/Login'
 import Signin from './Pages/SignIn'
 import NavBar from './Components/NavBar'
+import Home from './Pages/Home'
 function App() {
  
 
