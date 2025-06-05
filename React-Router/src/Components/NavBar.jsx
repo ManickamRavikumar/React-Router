@@ -11,8 +11,8 @@ function NavBar() {
       <Link to='/' className='font-bold text-blue-600 dark:text-sky-400'>Shopping</Link>
 
       <div className='flex items-center gap-4'>
-        <Link to='/shop'>Shop</Link>
-        <Link to='/cart' className='relative'>
+        <Link to='/Shop'>Shop</Link>
+        <Link to='/Cart' className='relative'>
           <FiShoppingCart size={20} />
           {cartItems.length > 0 && (
             <span className='absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1'>

@@ -7,9 +7,9 @@ import Cart from './Pages/Cart'
 import Checkout from './Pages/Checkout'
 import ProductDetail from './Pages/ProuctDetails'
 import NotFound from './Pages/NotFound'
-import { CartProvider } from './context/CartContext'
 import Login from './Pages/Login'
 import Signin from './Pages/SignIn'
+import { CartProvider } from './context/CartContext'
 
 
 function App() {
@@ -21,10 +21,10 @@ function App() {
        <NavBar/>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/Shop" element={<Shop />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/Checkout" element={<Checkout />} />
+          <Route path="/Product/:id" element={<ProductDetail />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/Singin" element={<Signin/>}/>
           <Route path="/Login" element={<Login/>}/>
