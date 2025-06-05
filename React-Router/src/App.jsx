@@ -24,8 +24,8 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="*" element={<NotFound />} />
-           <Route path="/Singin" element={<Signin/>}/>
-        <Route path="/Login" element={<Login/>}/>
+          <Route path="/Singin" element={<Signin/>}/>
+          <Route path="/Login" element={<Login/>}/>
         </Routes>
       </BrowserRouter>
     </CartProvider>
