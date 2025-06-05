@@ -1,26 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FaShoppingCart } from "react-icons/fa";
-import { useContext } from 'react';
-import { CardContext } from '../Context/CardContext';
+import { FiShoppingCart } from 'react-icons/fi'
+import { useContext } from 'react'
+import { CartContext } from '../context/CartContext'
 
-function NavBar() {
-  const {carditems} = useContext(CardContext)
+function Navbar() {
+  const { cartItems } = useContext(CartContext)
   return (
-    <nav className='flex justify-between items-center p-4 bg-green-400'>
-       <Link to="/Shop">API Store</Link>
-       <div className='flex gap-5 items-center'>
-        <Link to="/Shop">Shop</Link>
-        <Link to="/Card" className='relative'><FaShoppingCart size={25} />
-        {carditems.length > 0 && (<span className='absolute -top-2 px-1 -right-2 text-xs bg-red-500 text-white rounded-full '>
-        {carditems.length}</span>)}
-        </Link>
-        <Link>Signin</Link>
-        <Link>Login</Link>
-       </div>
+    <nav className='flex justify-between items-center p-4 shadow-md'>
+      <Link to='/' className='font-bold text-blue-600 dark:text-sky-400'>Shopping</Link>
 
+      <div className='flex items-center gap-4'>
+        <Link to='/shop'>Shop</Link>
+        <Link to='/cart' className='relative'>
+          <FiShoppingCart size={20} />
+          {cartItems.length > 0 && (
+            <span className='absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1'>
+              {cartItems.length}
+            </span>
+          )}
+        </Link>
+        <Link to="/Login">Login</Link>
+      </div>
     </nav>
   )
 }
 
-export default NavBar
+export default Navbar

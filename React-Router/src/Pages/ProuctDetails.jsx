@@ -1,34 +1,53 @@
-import React, { useContext, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import { CardContext } from '../Context/CardContext';
-import axios from 'axios';
+import { useParams } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import { CartContext } from "../context/CartContext";
 
-function ProuctDetails() {
-  const {id}=useParams();
-  const [product,setProduct]=useState(null);
-  const {addToCard,isInCard,removeFromCard}=useContext(CardContext);
-  useEffect(()=>{
-    axios.get(`https://fakestoreapi.com/products/${id}`)
-    .then((res)=>setProduct(res.data));
-  },[id])
-  if(!product)return <h1>Loading...</h1>
-  const added = isInCard(product.id);
-  const handleCard = () =>{
-    if(added){
-      removeFromCard(product.id);
-  }else{
-    addToCard({...product,quantity:1});
-  }
-}
+function ProductDetail () {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const { addToCart, removeFromCart, isInCart } = useContext(CartContext);
+
+  useEffect(() => {
+    axios
+      .get(`https://fakestoreapi.com/products${id}`)
+      .then((res) => setProduct(res.data));
+  }, [id]);
+
+  if (!product) return <div>Loading...</div>;
+
+  const added = isInCart(product.id);
+
+  const handleCart = () => {
+    if (added) {
+      removeFromCart(product.id);
+    } else {
+      addToCart({ ...product, quantity: 1 });
+    }
+  };
+
   return (
-    <div>
-      <div><img src={product.image}/></div>
-      <div><h2>{product.title}</h2></div>
-      <div><h2>{product.price}</h2></div>
-      <button onClick={handleCard}>{added ? "Remove from Card" : "Add to Card"}</button>
-      
-    </div>
-  )
-}
+    <div className="container mx-auto p-10 flex gap-8">
+      <div className="w-1/2 shadow-lg rounded">
+        <img src={product.image} className="rounded-lg" />
+      </div>
 
-export default ProuctDetails
+      <div className="w-1/2 flex flex-col justify-center gap-4">
+        <h2 className="text-4xl font-bold">{product.title}</h2>
+        <p className="text-2xl font-semibold">${product.price}</p>
+        <p className="text-2xl font-semibold">${product.description}</p>
+
+        <button
+          onClick={handleCart}
+          className={`px-4 py-2 text-white ${
+            added ? "bg-gray-500" : "bg-red-500"
+          }`}
+        >
+          {added ? "Remove From Cart" : "Add To Cart"}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ProductDetail;

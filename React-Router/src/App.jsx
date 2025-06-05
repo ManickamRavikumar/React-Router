@@ -1,36 +1,35 @@
 import './App.css'
-import { BrowserRouter, Route, Routes, } from 'react-router-dom'
-import NavBar from './Components/NavBar'
-import Home from './Pages/Home'
-import Shop from './Pages/Shop'
-import Card from './Pages/Card'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import Cart from './Pages/Cart'
+import ProductDetail from './Pages/ProuctDetails'
 import Checkout from './Pages/Checkout'
-import ProuctDetails from './Pages/ProuctDetails'
-import NotFound from './Pages/NotFound'
-import { CardProvider } from './Context/CardContext'
-
-
+import Shop from './Pages/Shop'
+import NotFound from './pages/NotFound'
+import { CartProvider } from './context/CartContext'
+import Login from './Pages/Login'
+import Signin from './Pages/SignIn'
 function App() {
  
 
   return (
-    <>
-      <CardProvider>
+    <CartProvider>
       <BrowserRouter>
-      <NavBar/>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/Shop" element={<Shop/>}/>
-        <Route path="/Card" element={<Card/>}/>
-        <Route path="/Checkout" element={<Checkout/>}/>
-        <Route path="/Product/:id" element={<ProuctDetails/>}/>
-        <Route path="*" element={<NotFound/>}/>
-      </Routes>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="*" element={<NotFound />} />
+           <Route path="/Singin" element={<Signin/>}/>
+        <Route path="/Login" element={<Login/>}/>
+        </Routes>
       </BrowserRouter>
-      </CardProvider>
-      
-    </>
-  )
+    </CartProvider>
+  );
 }
 
 export default App

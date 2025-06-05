@@ -1,33 +1,55 @@
-import {React, useContext} from 'react'
+import React, { useContext } from 'react'
+import { FaStar } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import { CardContext } from '../Context/CardContext';
+import { CartContext } from '../context/CartContext';
 
+function ProductCard({ product }) {
 
-function ProductCard({product}) {
-    const {addToCard} = useContext(CardContext);
-    const {removeFromeCard} = useContext(CardContext);
-    const {isInCard} = useContext(CardContext);
+    const { addToCart, removeFromCart, isInCart } = useContext(CartContext);
 
     const navigate = useNavigate();
-    const added = isInCard(product.id);
-    const handleClick =(e) =>{
+
+    const added = isInCart(product.id);
+
+    const handleClick = (e) => {
         e.stopPropagation();
-        added? removeFromeCard(product.id):addToCard(product);
-        
-    }
-    const handleNavigate = () =>{ 
-        navigate(`/Product/${product.id}`);
-    }
-  return (
-    <div onClick={handleNavigate} className='shadow-lg p-4 rounded-md bg-yellow-100' >
-        <img src={product.image} className='h-84 w-full object-cover rounded' alt="" />
-        <h2 className='mt-2 font-semibold'>{product.title}</h2>
-        <h2 className=''>{product.price}</h2>
-        <button onClick={handleClick}className={`px-4 py-1 rounded-full text-white ${added ? 'bg-red-500':'bg-blue-500'}`}>
-            {added ? 'Remove from Card':'Add to Card'}
-        </button>
-    </div>
-  )
+        added ? removeFromCart(product.id) : addToCart(product);
+    };
+
+    const handleNavigate = () => {
+        navigate(`/product/${product.id}`);
+    };
+
+    return (
+        <div onClick={handleNavigate} className="shadow-lg rounded-lg p-4 cursor-pointer">
+            <img src={product.image} className='h-52 w-full object-cover rounded' />
+            <h3 className='mt-2 font-semibold'>{product.title}</h3>
+            <p className='text-gray-600'>{product.category}</p>
+            <div className='flex flex-row items-center justify-between'>
+                <p className='text-gray-600 font-bold'>${product.price}</p>
+                <div className='flex text-yellow-400 my-2'>
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                </div>
+
+            </div>
+
+            {/* <p className='text-gray-600'>{product.description}</p> */}
+            
+
+
+            <button
+                onClick={handleClick}
+                className={`px-4 py-1 rounded-full text-white ${added ? "bg-gray-500" : "bg-red-500"
+                    }`}
+            >
+                {added ? "Remove from Cart" : "Add to Cart"}
+            </button>
+        </div>
+    );
 }
 
 export default ProductCard
